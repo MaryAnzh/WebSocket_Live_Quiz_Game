@@ -1,0 +1,21 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Build
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# Editor
+.vscode/

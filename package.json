@@ -1,0 +1,36 @@
+{
+  "name": "websocket_live_quiz_game",
+  "version": "1.0.0",
+  "description": "RS School task 4",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "compiler": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game.git"
+  },
+  "author": "Maryia Vashchayeva (MaryAnzh)",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game/issues"
+  },
+  "homepage": "https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game#readme",
+  "dependencies": {
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^10.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
