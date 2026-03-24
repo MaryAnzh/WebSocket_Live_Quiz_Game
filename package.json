@@ -1,0 +1,43 @@
+{
+  "name": "websocket_live_quiz_game",
+  "version": "1.0.0",
+  "description": "RS School task 4",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --extensions \".ts\" --out-dir dist --copy-files",
+    "dev": "tsx src/index.ts",
+    "start": "npm run build && node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "compiler": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game.git"
+  },
+  "author": "Maryia Vashchayeva (MaryAnzh)",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game/issues"
+  },
+  "homepage": "https://github.com/MaryAnzh/WebSocket_Live_Quiz_Game#readme",
+  "dependencies": {
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-typescript": "^7.28.5",
+    "@babel/register": "^7.28.6",
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "babel-plugin-add-import-extension": "^1.6.0",
+    "eslint": "^10.1.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
