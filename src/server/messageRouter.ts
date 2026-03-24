@@ -5,11 +5,13 @@ import * as F from '../handlers/index';
 import type * as T from '../types/index';
 
 type HandlerMap = {
-    [C.COMMANDS.REG]: (ws: WebSocket, data: T.RegData) => void;
+    [C.COMMANDS.REG]: (ws: WebSocket, data: T.RegData, id: number) => void;
+    [C.COMMANDS.CREATE_GAME]: (ws: WebSocket, data: T.CreateGameData, id: number) => void;
 };
 
 const handlers: HandlerMap = {
-    [C.COMMANDS.REG]: F.regHandler
+    [C.COMMANDS.REG]: F.regHandler,
+    [C.COMMANDS.CREATE_GAME]: F.createGameHandler
 };
 
 export function routeMessage(ws: WebSocket, raw: string) {
@@ -25,17 +27,28 @@ export function routeMessage(ws: WebSocket, raw: string) {
         }));
         return;
     }
+    const { type, data, id } = msg;
 
-    const handler = handlers[msg.type];
+    const handler = handlers[type];
 
     if (!handler) {
         ws.send(JSON.stringify({
             type: 'error',
             data: { error: true, errorText: `${C.UNKNOWN_COMMAND}: ${msg.type}` },
-            id: 0
+            id
         }));
         return;
     }
 
-    handler(ws, msg.data);
+    if (type === C.COMMANDS.REG) {
+        handlers[type](ws, data, id);
+        return;
+    }
+
+    if (type === C.COMMANDS.CREATE_GAME) {
+        handlers[type](ws, data, id);
+        return;
+    }
+
+
 }

@@ -3,9 +3,10 @@ import * as C from '../constants';
 import type { Player } from './Player';
 import type { Question } from './Question';
 
-export interface Game {
+export type Game = {
     id: string;
-    code: string;            // 6-character alphanumeric code
+    /** 6  charts */
+    code: string;
     hostId: number | string;
     questions: Question[];
     players: Player[];
@@ -13,3 +14,4 @@ export interface Game {
     currentQuestion: number;
     status: typeof C.WAITING | typeof C.IN_PROGRESS | typeof C.FINISHED;
 }
+

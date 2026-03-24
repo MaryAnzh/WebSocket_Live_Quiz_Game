@@ -1,4 +1,4 @@
-import type { Game } from '../types/index';
+import type { Game } from '../types/Game';
 
 class GamesStore {
     private games = new Map<string, Game>();
@@ -7,19 +7,15 @@ class GamesStore {
         this.games.set(game.id, game);
     }
 
-    getById(id: string): Game | undefined {
-        return this.games.get(id);
+    getById(id: string) {
+        return this.games.get(id) || null;
     }
 
-    getByCode(code: string): Game | undefined {
-        for (const g of this.games.values()) {
-            if (g.code === code) return g;
+    getByCode(code: string) {
+        for (const game of this.games.values()) {
+            if (game.code === code) return game;
         }
-        return undefined;
-    }
-
-    remove(id: string) {
-        this.games.delete(id);
+        return null;
     }
 }
 
