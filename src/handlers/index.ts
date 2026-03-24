@@ -1,0 +1,1 @@
+export { regHandler } from './reg';
