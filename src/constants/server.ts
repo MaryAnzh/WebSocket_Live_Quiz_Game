@@ -8,6 +8,9 @@ export const COMMANDS = {
     IMPORT_QUESTIONS: 'import_questions'
 } as const;
 
+export const QUIZ_MESSAGE = { PLAYER_JOINED: 'player_joined', UPDATE_PLAYERS: 'update_players' } as const;
+export const { PLAYER_JOINED, UPDATE_PLAYERS } = QUIZ_MESSAGE;
+
 export const GAME_STATUS = {
     WAITING: 'waiting',
     IN_PROGRESS: 'in_progress',

@@ -3,19 +3,23 @@ import type { WebSocket } from 'ws';
 import * as C from '../constants/index';
 import * as F from '../handlers/index';
 import type * as T from '../types/index';
+const { REG, CREATE_GAME, JOIN_GAME } = C.COMMANDS;
 
+type MessageCallbackType<T> = (ws: WebSocket, data: T, id: number) => void;
 type HandlerMap = {
-    [C.COMMANDS.REG]: (ws: WebSocket, data: T.RegData, id: number) => void;
-    [C.COMMANDS.CREATE_GAME]: (ws: WebSocket, data: T.CreateGameData, id: number) => void;
+    [REG]: MessageCallbackType<T.RegData>,
+    [CREATE_GAME]: MessageCallbackType<T.CreateGameData>,
+    [JOIN_GAME]: MessageCallbackType<T.JoinGameData>,
 };
 
 const handlers: HandlerMap = {
-    [C.COMMANDS.REG]: F.regHandler,
-    [C.COMMANDS.CREATE_GAME]: F.createGameHandler
+    [REG]: F.regHandler,
+    [CREATE_GAME]: F.createGameHandler,
+    [JOIN_GAME]: F.joinGameHandler,
 };
 
 export function routeMessage(ws: WebSocket, raw: string) {
-    let msg: T.IncomingMessage;
+    let msg: T.MessageDataType;
 
     try {
         msg = JSON.parse(raw);
@@ -40,15 +44,19 @@ export function routeMessage(ws: WebSocket, raw: string) {
         return;
     }
 
-    if (type === C.COMMANDS.REG) {
+    if (type === REG) {
         handlers[type](ws, data, id);
         return;
     }
 
-    if (type === C.COMMANDS.CREATE_GAME) {
+    if (type === CREATE_GAME) {
         handlers[type](ws, data, id);
         return;
     }
 
-
+     if (type === JOIN_GAME) {
+        handlers[type](ws, data, id);
+        return;
+    }
+    
 }
